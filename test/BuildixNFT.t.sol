@@ -51,9 +51,9 @@ contract BuildixNFTTest is Test {
     function test_check_reveal() public {
         vm.startPrank(owner);
         nft.setBaseURI("ipfs://hidden/");
-        assertEq(nft.tokenURI(1), "ipfs://hidden/1");
+        assertEq(nft.tokenURI(1), "ipfs://hidden/1.json");
         nft.setBaseURI("ipfs://revealed/");
-        assertEq(nft.tokenURI(1), "ipfs://revealed/1");
+        assertEq(nft.tokenURI(1), "ipfs://revealed/1.json");
     }
 
     function test_mints_until_max() public {

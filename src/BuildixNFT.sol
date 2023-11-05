@@ -84,6 +84,16 @@ contract BuildixNFT is
         return baseURI;
     }
 
+    /**
+     * @dev Returns the Uniform Resource Identifier (URI) for `tokenId` token.
+     */
+    function tokenURI(uint256 tokenId) public view virtual override(ERC721A, IERC721A) returns (string memory) {
+        if (!_exists(tokenId)) revert URIQueryForNonexistentToken();
+
+        string memory prefix = _baseURI();
+        return bytes(prefix).length != 0 ? string(abi.encodePacked(prefix, _toString(tokenId), ".json")) : '';
+    }
+
     // ======= OPERATOR FILTER FUNCTIONS =====
     function setApprovalForAll(address operator, bool approved)
         public
