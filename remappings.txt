@@ -1,0 +1,3 @@
+@openzeppelin=lib/closedsea/lib/openzeppelin-contracts/contracts/
+erc721a=lib/closedsea/lib/erc721a/contracts
+/=src/

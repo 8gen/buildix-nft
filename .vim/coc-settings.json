@@ -1,0 +1,7 @@
+{
+    "solidity.remapping": {
+        "erc721a": "lib/closedsea/lib/erc721a/contracts",
+        "forge-std": "lib/forge-std/src",
+        "@oz": "lib/closedsea/lib/openzeppelin-contracts/contracts",
+    }
+}
