@@ -33,7 +33,7 @@ contract BuildixNFT is
         _mint(msg.sender, 24);
 
         // init
-        mintPrice = 1 ether;
+        mintPrice = 0.265 ether;
         treasure = msg.sender;
         maxSupply = 50;
     }
@@ -59,13 +59,13 @@ contract BuildixNFT is
     }
 
     // @dev withdraw ETH, necessary when somebody sent by mistake native tokens to this contract
-    function withdraw() public onlyOwner {
+    function emergencyWithdraw() public onlyOwner {
         address payable owner = payable(msg.sender);
         owner.transfer(address(this).balance);
     }
 
     // @dev withdraw ERC20, necessary when somebody sent by mistake tokens to this contract
-    function withdrawToken(address _token) public onlyOwner {
+    function emergencyWithdrawToken(address _token) public onlyOwner {
         IERC20(_token).transfer(msg.sender, address(this).balance);
     }
 
