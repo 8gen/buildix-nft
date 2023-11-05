@@ -24,6 +24,7 @@ contract BuildixNFTTest is Test {
         assertEq(nft.owner(), owner);
         deal(owner, 1000 ether);
         deal(buyer, 1000 ether);
+        nft.setBaseURI("ipfs://hidden/");
         nft.setTreasure(treasure);
         vm.stopPrank();
     }
@@ -50,7 +51,6 @@ contract BuildixNFTTest is Test {
 
     function test_check_reveal() public {
         vm.startPrank(owner);
-        nft.setBaseURI("ipfs://hidden/");
         assertEq(nft.tokenURI(1), "ipfs://hidden/1.json");
         nft.setBaseURI("ipfs://revealed/");
         assertEq(nft.tokenURI(1), "ipfs://revealed/1.json");
@@ -64,6 +64,7 @@ contract BuildixNFTTest is Test {
         }
         assertEq(nft.balanceOf(buyer), 26);
         assertEq(nft.totalSupply(), 50);
+        assertEq(nft.tokenURI(50), "ipfs://hidden/50.json");
 
         // should revert on limit over max supply
         vm.expectRevert("BuildixNFT: max supply reached");

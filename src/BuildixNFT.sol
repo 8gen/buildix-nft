@@ -84,6 +84,10 @@ contract BuildixNFT is
         return baseURI;
     }
 
+    function _startTokenId() internal view virtual override returns (uint256) {
+        return 1;
+    }
+
     /**
      * @dev Returns the Uniform Resource Identifier (URI) for `tokenId` token.
      */
