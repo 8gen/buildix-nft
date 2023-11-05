@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.17;
+pragma solidity ^0.8.20;
 
 import {IERC721A, ERC721A} from "erc721a/ERC721A.sol";
 import {ERC721AQueryable} from "erc721a/extensions/ERC721AQueryable.sol";
@@ -24,18 +24,18 @@ contract BuildixNFT is
     address public treasure;
 
     constructor() ERC721A("Buildix NFT", "BUILDIX") {
+        // init
+        mintPrice = 0.265 ether;
+        treasure = 0x77c218De73001779301FC76ffa8f93568C75fdb0;
+        maxSupply = 50;
+
         // init operator filter
         _registerForOperatorFiltering();
         operatorFilteringEnabled = true;
-        _setDefaultRoyalty(msg.sender, 500);
+        _setDefaultRoyalty(treasure, 500);
 
         // pre-mint
-        _mint(msg.sender, 24);
-
-        // init
-        mintPrice = 0.265 ether;
-        treasure = msg.sender;
-        maxSupply = 50;
+        _mint(treasure, 30);
     }
 
     // ======= ADMIN FUNCTIONS ======

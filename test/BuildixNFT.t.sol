@@ -10,7 +10,7 @@ contract BuildixNFTTest is Test {
     address public owner = address(1);
     address public buyer = address(2);
     address public newOwner = address(3);
-    address public treasure = address(4);
+    address public treasure = 0x77c218De73001779301FC76ffa8f93568C75fdb0;
 
     uint256 forkId;
 
@@ -30,12 +30,12 @@ contract BuildixNFTTest is Test {
     }
 
     function test_check_initial_balance() public {
-        assertEq(nft.balanceOf(owner), 24);
-        vm.prank(owner);
-        nft.transferFrom(owner, buyer, 1);
-        assertEq(nft.balanceOf(owner), 23);
+        assertEq(nft.balanceOf(treasure), 30);
+        vm.prank(treasure);
+        nft.transferFrom(treasure, buyer, 1);
+        assertEq(nft.balanceOf(treasure), 29);
         assertEq(nft.balanceOf(buyer), 1);
-        assertEq(nft.totalSupply(), 24);
+        assertEq(nft.totalSupply(), 30);
     }
 
     function test_mint_in_supply() public {
@@ -45,7 +45,7 @@ contract BuildixNFTTest is Test {
         vm.prank(buyer);
         nft.mint{value: price}(buyer);
         assertEq(nft.balanceOf(buyer), 1);
-        assertEq(nft.totalSupply(), 25);
+        assertEq(nft.totalSupply(), 31);
         assertEq(treasure.balance - price, treasureBalance);
     }
 
@@ -59,10 +59,10 @@ contract BuildixNFTTest is Test {
     function test_mints_until_max() public {
         uint256 price = nft.mintPrice();
         vm.startPrank(buyer);
-        for(uint256 i = 0; i < 26; i++) {
+        for(uint256 i = 0; i < 20; i++) {
             nft.mint{value: price}(buyer);
         }
-        assertEq(nft.balanceOf(buyer), 26);
+        assertEq(nft.balanceOf(buyer), 20);
         assertEq(nft.totalSupply(), 50);
         assertEq(nft.tokenURI(50), "ipfs://hidden/50.json");
 
