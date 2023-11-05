@@ -32,7 +32,7 @@ contract BuildixNFT is
         // init operator filter
         _registerForOperatorFiltering();
         operatorFilteringEnabled = true;
-        _setDefaultRoyalty(treasure, 500);
+        _setDefaultRoyalty(treasure, 1000);
 
         // pre-mint
         _mint(treasure, 30);
